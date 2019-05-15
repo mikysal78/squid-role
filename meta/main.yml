@@ -1,0 +1,17 @@
+---
+galaxy_info:
+  author: Michele Salerno
+  description: Sets up privoxy on Debian.
+  license: BSD
+  min_ansible_version: 2.7
+  platforms:
+    - name: Debian
+      versions:
+        - stretch
+        - raspbian
+  galaxy_tags:
+    - networking
+    - system
+    - proxy
+    - squid
+dependencies: []
