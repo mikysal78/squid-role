@@ -22,7 +22,7 @@ proxy.domain.local ansible_user=root ansible_port=22 ansible_host=10.27.22.6
 
 #Playbook
 ```Yaml
-- hosts: raspy
+- hosts: proxy
   become: "{{ sudo | default('yes') }}"
   roles:
     - squid
