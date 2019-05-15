@@ -1,0 +1,85 @@
+# roles/squid/tasks/main.yml
+---
+- name: Install Squid Proxy
+  package:
+    pkg: "{{ item }}"
+    state: present
+  with_items:
+    - "{{ squid_packages }}"
+  tags: squid
+
+# Create Dir for Lists
+- name: Create directory Domain List
+  file:
+    path: "{{ domain_list_dir }}"
+    state: directory
+
+- name: Create directory Key Word List
+  file:
+    path: "{{ key_wordlist_dir }}"
+    state: directory
+
+# Copy defaults Lists
+- name: copy Key Word List
+  copy:
+    src: "../files/{{ key_user_defined }}"
+    dest: "{{ domain_list_dir }}/{{ key_user_defined }}"
+
+- name: copy Domain User Defined
+  copy:
+    src: "../files/{{ domain_user_defined }}"
+    dest: "{{ domain_list_dir }}/{{ domain_user_defined }}"
+
+- name: copy Domain Downloads
+  copy:
+    src: "../files/{{ download }}"
+    dest: "{{ domain_list_dir }}/{{ download }}"
+
+- name: copy Domain Movie
+  copy:
+    src: "../files/{{ movie }}"
+    dest: "{{ domain_list_dir }}/{{ movie }}"
+
+- name: copy Domain Music
+  copy:
+    src: "../files/{{ music }}"
+    dest: "{{ domain_list_dir }}/{{ music }}"
+
+- name: copy Domain ADV
+  copy:
+    src: "../files/{{ adv }}"
+    dest: "{{ domain_list_dir }}/{{ adv }}"
+
+- name: copy Domain Porn
+  copy:
+    src: "../files/{{ porn }}"
+    dest: "{{ domain_list_dir }}/{{ porn }}"
+
+- name: copy Domain Spyware
+  copy:
+    src: "../files/{{ spyware }}"
+    dest: "{{ domain_list_dir }}/{{ spyware }}"
+
+- name: copy Domain Social Net
+  copy:
+    src: "../files/{{ socialnet }}"
+    dest: "{{ domain_list_dir }}/{{ socialnet }}"
+
+- name: copy Domain Warez
+  copy:
+    src: "../files/{{ warez }}"
+    dest: "{{ domain_list_dir }}/{{ warez }}"
+
+# Configure Squid
+- name: configure squid
+  tags: squid
+  template:
+    src: squid.conf.j2
+    dest: /etc/squid/squid.conf
+    mode: 0644
+    owner: root
+    group: root
+  notify: reload squid
+
+
+
