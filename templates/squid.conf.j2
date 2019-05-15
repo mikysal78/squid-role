@@ -1,0 +1,90 @@
+acl localnet src {{ localnet }} # Rete Ninux
+
+acl SSL_ports port 443
+acl Safe_ports port 80
+acl Safe_ports port 21
+acl Safe_ports port 443
+acl Safe_ports port 70
+acl Safe_ports port 210
+acl Safe_ports port 1025-65535
+acl Safe_ports port 280
+acl Safe_ports port 488
+acl Safe_ports port 591
+acl Safe_ports port 777
+
+acl CONNECT method CONNECT
+
+## Block Domains
+# Block User-Defined
+acl block_user_defined dstdomain "{{ domain_list_dir }}/{{ domain_user_defined }}"
+http_access deny block_user_defined
+
+# Block Download
+acl block_download dstdomain "{{ domain_list_dir }}/{{ download }}"
+http_access deny block_download
+
+# Block Movie
+acl block_movie dstdomain "{{ domain_list_dir }}/{{ movie }}"
+http_access deny block_movie
+
+# Block Music
+acl block_music dstdomain "{{ domain_list_dir }}/{{ music }}"
+http_access deny block_music
+
+# Block ADV
+acl block_adv dstdomain "{{ domain_list_dir }}/{{ adv }}"
+http_access deny block_adv
+
+# Block Porn
+acl block_porn dstdomain "{{ domain_list_dir }}/{{ porn }}"
+http_access deny block_porn
+
+# Block SpyWare
+acl block_spyware dstdomain "{{ domain_list_dir }}/{{ spyware }}"
+http_access deny block_spyware
+
+# Block Social
+acl block_socialnet dstdomain "{{ domain_list_dir }}/{{ socialnet }}"
+http_access deny block_socialnet
+
+# Block Warez
+acl block_warez dstdomain "{{ domain_list_dir }}/{{ warez }}"
+http_access deny block_warez
+
+## Block Key Wordlist
+acl block_key_user_defined url_regex "{{ domain_list_dir }}/{{ key_user_defined }}"
+http_access deny block_key_user_defined
+
+http_access deny !Safe_ports
+http_access deny CONNECT !SSL_ports
+http_access allow localhost manager
+http_access deny manager
+http_access allow localhost
+http_access deny all
+
+http_port 0.0.0.0:{{ squid_http_port }} transparent
+coredump_dir /var/spool/squid
+refresh_pattern ^ftp:           1440    20%     10080
+refresh_pattern ^gopher:        1440    0%      1440
+refresh_pattern -i (/cgi-bin/|\?) 0     0%      0
+refresh_pattern .               0       20%     4320
+
+# access_log /var/log/squid/access.log squid
+
+error_directory /usr/share/squid/errors/Italian
+cache_mgr {{ mail }}
+
+cache_mem {{ ram }} MB
+
+maximum_object_size_in_memory 4 MB # Non salva in memoria files maggiori di 4 MB
+maximum_object_size 5120 MB # File di dimensioni massime nella cache su disco
+
+cache_dir ufs {{ cache_dir }} {{ space_cache }} 32 512
+cache_swap_low 87 # Inizia a svuotare la cache quando arriva a 8.7 GB
+cache_swap_high 90 # Svuota la cache in maniera più aggressiva quando la soglia è 9 GB
+cache_effective_user proxy
+cache_effective_group proxy
+client_db off # Non effettua le statistiche per i client individuali
+positive_dns_ttl 30 seconds
+negative_dns_ttl 1 second
+minimum_expiry_time 600 seconds
