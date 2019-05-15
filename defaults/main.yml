@@ -1,0 +1,28 @@
+# roles/squid/defaults/main.yml
+---
+squid_http_port: 8888
+
+# allow or deny
+# squid_http_access: allow
+
+localnet: 10.27.0.0/16 # Rete Ninux
+hotspotnet: 192.168.20.0/24 # Rete HotSpot
+
+mail: mikysal78@gmail.com
+
+ram: 256
+# Spazio per la cache, nell'esempio è 10 GB
+space_cache: 10240
+
+# Block Domain List
+key_user_defined: key_user_defined.lst
+domain_user_defined: domain_user_defined.lst
+download: download_domains.lst
+movie: movie_domains.lst
+music: music_domains.lst
+adv: adv_domains.lst
+porn: porn_domains.lst
+spyware: spyware_domains.lst
+socialnet: socialnet_domains.lst
+warez: warez_domains.lst
+
