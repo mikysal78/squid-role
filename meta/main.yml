@@ -8,7 +8,6 @@ galaxy_info:
     - name: Debian
       versions:
         - stretch
-        - raspbian
   galaxy_tags:
     - networking
     - system
