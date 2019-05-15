@@ -1,0 +1,11 @@
+# roles/squid/vars/main.yml
+---
+squid_packages:
+  - squid
+  - squid-langpack
+
+squid_service: squid
+
+domain_list_dir: /etc/squid/domainlist
+key_wordlist_dir: /etc/squid/wordlist
+cache_dir: /var/spool/squid
