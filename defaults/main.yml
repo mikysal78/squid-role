@@ -9,7 +9,7 @@ localnet: 10.27.0.0/16 # Rete Ninux
 hotspotnet: 192.168.20.0/24 # Rete HotSpot
 
 mail: mikysal78@gmail.com
-
+lang: Italian
 ram: 256
 # Spazio per la cache, nell'esempio è 10 GB
 space_cache: 10240

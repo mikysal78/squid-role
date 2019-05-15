@@ -71,7 +71,7 @@ refresh_pattern .               0       20%     4320
 
 # access_log /var/log/squid/access.log squid
 
-error_directory /usr/share/squid/errors/Italian
+error_directory /usr/share/squid/errors/{{ lang }}
 cache_mgr {{ mail }}
 
 cache_mem {{ ram }} MB
