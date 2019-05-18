@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: Michele Salerno
-  description: Sets up privoxy on Debian.
+  description: Install and Configure Squid on Debian.
   license: BSD
   min_ansible_version: 2.7
   platforms:
