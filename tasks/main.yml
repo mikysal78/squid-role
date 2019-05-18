@@ -70,6 +70,16 @@
     src: "../files/{{ warez }}"
     dest: "{{ domain_list_dir }}/{{ warez }}"
 
+- name: copy Domain Phishing and Army
+  copy:
+    src: "../files/{{ phishing_army }}"
+    dest: "{{ domain_list_dir }}/{{ phishing_army }}"
+
+- name: copy Domain Malicious
+  copy:
+    src: "../files/{{ malicious }}"
+    dest: "{{ domain_list_dir }}/{{ malicious }}"
+
 # Configure Squid
 - name: configure squid
   tags: squid
@@ -79,4 +89,4 @@
     mode: 0644
     owner: root
     group: root
-  notify: reload squid
+  notify: Reload Squid
