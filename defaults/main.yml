@@ -25,5 +25,6 @@ porn: porn_domains.lst
 spyware: spyware_domains.lst
 socialnet: socialnet_domains.lst
 warez: warez_domains.lst
-phishing_army: phishing_army.lst
+phishing_army: phishing_army_domain.lst
 malicious: malicious_domain.lst
+shorturl: shorturl_domains.lst

@@ -59,6 +59,10 @@ http_access deny block_phishing_army
 acl block_malicious dstdomain "{{ domain_list_dir }}/{{ malicious }}"
 http_access deny block_malicious
 
+# Block Malicious
+acl block_shorturl dstdomain "{{ domain_list_dir }}/{{ shorturl }}"
+http_access deny block_shorturl
+
 ## Block Key Wordlist
 acl block_key_user_defined url_regex "{{ domain_list_dir }}/{{ key_user_defined }}"
 http_access deny block_key_user_defined

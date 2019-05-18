@@ -80,6 +80,11 @@
     src: "../files/{{ malicious }}"
     dest: "{{ domain_list_dir }}/{{ malicious }}"
 
+- name: copy Domain shorturl_domains
+  copy:
+    src: "../files/{{ shorturl }}"
+    dest: "{{ domain_list_dir }}/{{ shorturl }}"
+
 # Configure Squid
 - name: configure squid
   tags: squid
