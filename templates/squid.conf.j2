@@ -51,6 +51,14 @@ http_access deny block_socialnet
 acl block_warez dstdomain "{{ domain_list_dir }}/{{ warez }}"
 http_access deny block_warez
 
+# Block Phishing and Army
+acl block_phishing_army dstdomain "{{ domain_list_dir }}/{{ phishing_army }}"
+http_access deny block_phishing_army
+
+# Block Malicious
+acl block_malicious dstdomain "{{ domain_list_dir }}/{{ malicious }}"
+http_access deny block_malicious
+
 ## Block Key Wordlist
 acl block_key_user_defined url_regex "{{ domain_list_dir }}/{{ key_user_defined }}"
 http_access deny block_key_user_defined
@@ -60,6 +68,7 @@ http_access deny CONNECT !SSL_ports
 http_access allow localhost manager
 http_access deny manager
 http_access allow localhost
+http_access allow localnet
 http_access deny all
 
 http_port 0.0.0.0:{{ squid_http_port }} transparent
@@ -79,7 +88,7 @@ cache_mem {{ ram }} MB
 maximum_object_size_in_memory 4 MB # Non salva in memoria files maggiori di 4 MB
 maximum_object_size 5120 MB # File di dimensioni massime nella cache su disco
 
-cache_dir ufs {{ cache_dir }} {{ space_cache }} 32 512
+cache_dir aufs {{ cache_dir }} {{ space_cache }} 32 512
 cache_swap_low 87 # Inizia a svuotare la cache quando arriva a 8.7 GB
 cache_swap_high 90 # Svuota la cache in maniera più aggressiva quando la soglia è 9 GB
 cache_effective_user proxy

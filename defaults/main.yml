@@ -10,7 +10,7 @@ hotspotnet: 192.168.20.0/24 # Rete HotSpot
 
 mail: mikysal78@gmail.com
 lang: Italian
-ram: 256
+ram: 512
 # Spazio per la cache, nell'esempio è 10 GB
 space_cache: 10240
 
@@ -25,3 +25,5 @@ porn: porn_domains.lst
 spyware: spyware_domains.lst
 socialnet: socialnet_domains.lst
 warez: warez_domains.lst
+phishing_army: phishing_army.lst
+malicious: malicious_domain.lst
