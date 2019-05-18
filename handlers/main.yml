@@ -1,16 +1,16 @@
 # roles/squid/handlers/main.yml
 ---
 
-- name: Restart squid service
+- name: Restart Squid
   systemd:
     name: "{{ squid_service }}"
     daemon_reload: yes
     state: restarted
   become: yes
 
-#- name: Reload squid service
-#  systemd:
-#    name: "{{ squid_service }}"
-#    daemon_reload: yes
-#    state: reloaded
-#  become: yes
+- name: Reload Squid
+  systemd:
+    name: "{{ squid_service }}"
+    daemon_reload: yes
+    state: reloaded
+  become: yes
