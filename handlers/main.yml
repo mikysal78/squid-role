@@ -8,9 +8,9 @@
     state: restarted
   become: yes
 
-- name: Reload squid service
-  systemd:
-    name: "{{ squid_service }}"
-    daemon_reload: yes
-    state: reloaded
-  become: yes
+#- name: Reload squid service
+#  systemd:
+#    name: "{{ squid_service }}"
+#    daemon_reload: yes
+#    state: reloaded
+#  become: yes
